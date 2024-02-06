@@ -1,13 +1,11 @@
 from pymongo import MongoClient
 
-client = MongoClient('localhost', 27017)
-db = client.projetSGD
-films = db.films
+def main():
+    client = MongoClient('localhost', 27017)
+    db = client['projetSGD']
 
-films.insert_one(
-    {
-        "title": "The Godfather",
-        "director": "Francis Ford Coppola",
-        "year": 1972
-    }
-)
+    for collection in db.list_collections():
+        print(collection)
+
+if __name__ == '__main__':
+    main()
