@@ -58,3 +58,61 @@ db.films.updateOne(
     { $addToSet: { "actors": "Ellen Page" } }
 );
 
+//add review
+db.films.updateOne(
+    { "title": "Inception" },
+    { $push: { "reviews": { "username": "critic2021", "rating": 4, "comment": "Great visuals!" } } }
+);
+
+
+//Calculate the average and maximum rating for each
+db.films.aggregate([
+    { $unwind: "$reviews" },
+    { $group: {
+        _id: "$_id",
+        averageRating: { $avg: "$reviews.rating" },
+        maxRating: { $max: "$reviews.rating" }
+    }},
+    { $lookup: {
+        from: "films",
+        localField: "_id",
+        foreignField: "_id",
+        as: "film_details"
+    }},
+    { $unwind: "$film_details" },
+    { $project: {
+        _id: 0,
+        title: "$film_details.title",
+        averageRating: 1,
+        maxRating: 1
+    }}
+]);
+
+
+//film directed by director born before 1970
+db.realisateurs.aggregate([
+    { $match: { "birthdate": { $lt: ISODate("1970-01-01T00:00:00Z") } } },
+    { $lookup: {
+        from: "films",
+        localField: "_id",
+        foreignField: "director",
+        as: "films"
+    }},
+    { $unwind: "$films" },
+    { $project: {
+        _id: 0,
+        directorName: "$name",
+        filmTitle: "$films.title",
+        filmYear: "$films.year"
+    }}
+]);
+
+
+//cinema that have shown more than 2 films
+db.cinemas.aggregate([
+    { $project: {
+        name: 1,
+        numberOfFilms: { $size: "$movies" }
+    }},
+    { $match: { numberOfFilms: { $gt: 1 } } }
+]);
