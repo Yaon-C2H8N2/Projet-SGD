@@ -1,5 +1,3 @@
-from bson import Code
-
 from dbutils import Connection
 
 connection = Connection()
