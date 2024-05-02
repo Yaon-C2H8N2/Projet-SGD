@@ -1,0 +1,13 @@
+realisateurs_to_insert = [
+    {"name": "Christopher Nolan", "birthdate": new Date("1970-07-30"), "nationality": "British"},
+    {"name": "Quentin Tarantino", "birthdate": new Date("1963-03-27"), "nationality": "American"},
+    {"name": "Francis Ford Coppola", "birthdate": new Date("1939-04-07"), "nationality": "American"},
+    {"name": "Frank Darabont", "birthdate": new Date("1959-01-28"), "nationality": "French-Hungarian"},
+    {"name": "David Fincher", "birthdate": new Date("1962-08-28"), "nationality": "American"},
+    {"name": "Robert Zemeckis", "birthdate": new Date("1951-05-14"), "nationality": "American"},
+    {"name": "Lana Wachowski", "birthdate": new Date("1965-06-21"), "nationality": "American"},
+    {"name": "James Cameron", "birthdate": new Date("1954-08-16"), "nationality": "Canadian"},
+    {"name": "Ridley Scott", "birthdate": new Date("1937-11-30"), "nationality": "British"}
+]
+
+db.realisateurs.insertMany(realisateurs_to_insert)
