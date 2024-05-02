@@ -11,3 +11,33 @@ realisateurs_to_insert = [
 ]
 
 db.realisateurs.insertMany(realisateurs_to_insert)
+
+films = [
+    {"title": "Inception", "year": 2010, "director": db.realisateurs.findOne({name: "Christopher Nolan"}, {"_id": 1})._id, "actors": ["Leonardo DiCaprio", "Joseph Gordon-Levitt"]},
+    {"title": "Interstellar", "year": 2014, "director": db.realisateurs.findOne({name: "Christopher Nolan"}, {"_id": 1})._id, "actors": ["Matthew McConaughey", "Anne Hathaway"]},
+    {"title": "The Dark Knight", "year": 2008, "director": db.realisateurs.findOne({name: "Christopher Nolan"}, {"_id": 1})._id, "actors": ["Christian Bale", "Heath Ledger"]},
+    {"title": "The Dark Knight Rises", "year": 2012, "director": db.realisateurs.findOne({name: "Christopher Nolan"}, {"_id": 1})._id, "actors": ["Christian Bale", "Tom Hardy"]},
+    {"title": "Django Unchained", "year": 2012, "director": db.realisateurs.findOne({name: "Quentin Tarantino"}, {"_id": 1})._id, "actors": ["Jamie Foxx", "Christoph Waltz"]},
+    {"title": "Kill Bill: Vol. 1", "year": 2003, "director": db.realisateurs.findOne({name: "Quentin Tarantino"}, {"_id": 1})._id, "actors": ["Uma Thurman", "Lucy Liu"]},
+    {"title": "Kill Bill: Vol. 2", "year": 2004, "director": db.realisateurs.findOne({name: "Quentin Tarantino"}, {"_id": 1})._id, "actors": ["Uma Thurman", "David Carradine"]},
+    {"title": "Pulp Fiction", "year": 1994, "director": db.realisateurs.findOne({name: "Quentin Tarantino"}, {"_id": 1})._id, "actors": ["John Travolta", "Uma Thurman"]},
+    {"title": "The Godfather", "year": 1972, "director": db.realisateurs.findOne({name: "Francis Ford Coppola"}, {"_id": 1})._id, "actors": ["Marlon Brando", "Al Pacino"]},
+    {"title": "The Godfather: Part II", "year": 1974, "director": db.realisateurs.findOne({name: "Francis Ford Coppola"}, {"_id": 1})._id, "actors": ["Al Pacino", "Robert De Niro"]},
+    {"title": "The Godfather: Part III", "year": 1990, "director": db.realisateurs.findOne({name: "Francis Ford Coppola"}, {"_id": 1})._id, "actors": ["Al Pacino", "Diane Keaton"]},
+    {"title": "The Shawshank Redemption", "year": 1994, "director": db.realisateurs.findOne({name: "Frank Darabont"}, {"_id": 1})._id, "actors": ["Tim Robbins", "Morgan Freeman"]},
+    {"title": "Fight Club", "year": 1999, "director": db.realisateurs.findOne({name: "David Fincher"}, {"_id": 1})._id, "actors": ["Brad Pitt", "Edward Norton"]},
+    {"title": "Se7en", "year": 1995, "director": db.realisateurs.findOne({name: "David Fincher"}, {"_id": 1})._id, "actors": ["Morgan Freeman", "Brad Pitt"]},
+    {"title": "The Social Network", "year": 2010, "director": db.realisateurs.findOne({name: "David Fincher"}, {"_id": 1})._id, "actors": ["Jesse Eisenberg", "Andrew Garfield"]},
+    {"title": "The Curious Case of Benjamin Button", "year": 2008, "director": db.realisateurs.findOne({name: "David Fincher"}, {"_id": 1})._id, "actors": ["Brad Pitt", "Cate Blanchett"]},
+    {"title": "Forrest Gump", "year": 1994, "director": db.realisateurs.findOne({name: "Robert Zemeckis"}, {"_id": 1})._id, "actors": ["Tom Hanks", "Robin Wright"]},
+    {"title": "The Matrix", "year": 1999, "director": db.realisateurs.findOne({name: "Lana Wachowski"}, {"_id": 1})._id, "actors": ["Keanu Reeves", "Laurence Fishburne"]},
+    {"title": "Matrix Reloaded", "year": 2003, "director": db.realisateurs.findOne({name: "Lana Wachowski"}, {"_id": 1})._id, "actors": ["Keanu Reeves", "Laurence Fishburne"]},
+    {"title": "Matrix Revolutions", "year": 2003, "director": db.realisateurs.findOne({name: "Lana Wachowski"}, {"_id": 1})._id, "actors": ["Keanu Reeves", "Laurence Fishburne"]},
+    {"title": "Avatar", "year": 2009, "director": db.realisateurs.findOne({name: "James Cameron"}, {"_id": 1})._id, "actors": ["Sam Worthington", "Zoe Saldana"]},
+    {"title": "Titanic", "year": 1997, "director": db.realisateurs.findOne({name: "James Cameron"}, {"_id": 1})._id, "actors": ["Leonardo DiCaprio", "Kate Winslet"]},
+    {"title": "Alien", "year": 1979, "director": db.realisateurs.findOne({name: "Ridley Scott"}, {"_id": 1})._id, "actors": ["Sigourney Weaver", "Tom Skerritt"]},
+    {"title": "Blade Runner", "year": 1982, "director": db.realisateurs.findOne({name: "Ridley Scott"}, {"_id": 1})._id, "actors": ["Harrison Ford", "Rutger Hauer"]},
+    {"title": "Gladiator", "year": 2000, "director": db.realisateurs.findOne({name: "Ridley Scott"}, {"_id": 1})._id, "actors": ["Russell Crowe", "Joaquin Phoenix"]}
+]
+
+db.films.insertMany(films)
