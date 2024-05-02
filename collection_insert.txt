@@ -41,3 +41,12 @@ films = [
 ]
 
 db.films.insertMany(films)
+
+cinemas_to_insert = [
+    {"name": "Cinéma Olympia", "address": "16 Avenue Maréchal Foch, 21000, Dijon", "projections": []},
+    {"name": "Cinéma Darcy", "address": "10 Place Darcy, 21000, Dijon", "projections": []},
+    {"name": "Cinéma Eldorado", "address": "21 Rue Alfred de Musset, 21000, Dijon", "projections": []},
+    {"name": "Cinéma Devosge", "address": "6 Rue Devosge, 21000, Dijon", "projections": []}
+]
+
+db.cinemas.insertMany(cinemas_to_insert)

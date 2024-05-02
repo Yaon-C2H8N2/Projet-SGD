@@ -43,29 +43,22 @@ db.createCollection("cinemas", {
                 "address": {"bsonType": "string", "description": "must be a string and is required"},
                 "projections": {
                     "bsonType": "array",
-                    "items": {"bsonType": "objectId"},
-                    "description": "must be an array of objectIds and is required"
-                }
-            }
-        }
-    }
-})
-
-db.createCollection("projections", {
-    validator: {
-        $jsonSchema: {
-            bsonType: "object",
-            required: ["filmid", "cinemaid", "datetime", "occupancy"],
-            properties: {
-                "filmid": {"bsonType": "objectId", "description": "must be an objectId and is required"},
-                "cinemaid": {"bsonType": "objectId", "description": "must be an objectId and is required"},
-                "datetime": {"bsonType": "date", "description": "must be a date and is required"},
-                "occupancy": {
-                    "bsonType": "object",
-                    "required": ["total", "reserved"],
-                    "properties": {
-                        "total": {"bsonType": "int", "description": "must be an integer and is required"},
-                        "reserved": {"bsonType": "int", "description": "must be an integer and is required"}
+                    "description": "must be an array of objects and is required",
+                    "items": {
+                        bsonType: "object",
+                        required: ["filmid", "datetime", "occupancy"],
+                        properties: {
+                            "filmid": {"bsonType": "objectId", "description": "must be an objectId and is required"},
+                            "datetime": {"bsonType": "date", "description": "must be a date and is required"},
+                            "occupancy": {
+                                "bsonType": "object",
+                                "required": ["total", "reserved"],
+                                "properties": {
+                                    "total": {"bsonType": "int", "description": "must be an integer and is required"},
+                                    "reserved": {"bsonType": "int", "description": "must be an integer and is required"}
+                                }
+                            }
+                        }
                     }
                 }
             }
