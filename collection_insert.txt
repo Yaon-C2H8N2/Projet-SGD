@@ -50,3 +50,31 @@ cinemas_to_insert = [
 ]
 
 db.cinemas.insertMany(cinemas_to_insert)
+
+
+//ajout de projections
+const currentDate = new Date();
+const projectionTimes = [12, 15, 18, 21];
+
+for (let i = 0; i < 30; i++) {
+    // random film
+    const randomFilm = db.films.aggregate([ { $sample: { size: 1 } } ]).toArray()[0];
+
+    // random ciné
+    const randomCinema = db.cinemas.aggregate([ { $sample: { size: 1 } } ]).toArray()[0];
+
+    projectionTimes.forEach(time => {
+        let projectionDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 1 + Math.floor(i / projectionTimes.length), time);
+
+        let newProjection = {
+            filmid: randomFilm._id,
+            datetime: projectionDate,
+            occupancy: { total: 200, reserved: Math.floor(Math.random() * 100) } // Random reserved seats
+        };
+
+        db.cinemas.updateOne(
+            { _id: randomCinema._id },
+            { $push: { projections: newProjection } }
+        );
+    });
+}
