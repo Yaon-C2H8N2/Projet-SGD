@@ -1,0 +1,74 @@
+use projetSGD
+
+db.createCollection("films", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["title", "year", "director", "actors"],
+            properties: {
+                "title": {"bsonType": "string", "description": "must be a string and is required"},
+                "year": {"bsonType": "int", "description": "must be an integer and is required"},
+                "director": {"bsonType": "objectId", "description": "must be an objectId and is required"},
+                "actors": {
+                    "bsonType": "array",
+                    "items": {"bsonType": "string"},
+                    "description": "must be an array of strings and is required"
+                }
+            }
+        }
+    }
+})
+
+db.createCollection("realisateurs", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["name", "birthdate", "nationality"],
+            properties: {
+                "name": {"bsonType": "string", "description": "must be a string and is required"},
+                "birthdate": {"bsonType": "date", "description": "must be a date and is required"},
+                "nationality": {"bsonType": "string", "description": "must be a string and is required"}
+            }
+        }
+    }
+})
+
+db.createCollection("cinemas", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["name", "address", "movies"],
+            properties: {
+                "name": {"bsonType": "string", "description": "must be a string and is required"},
+                "address": {"bsonType": "string", "description": "must be a string and is required"},
+                "movies": {
+                    "bsonType": "array",
+                    "items": {"bsonType": "objectId"},
+                    "description": "must be an array of objectIds and is required"
+                }
+            }
+        }
+    }
+})
+
+db.createCollection("projections", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["filmid", "cinemaid", "datetime", "occupancy"],
+            properties: {
+                "filmid": {"bsonType": "objectId", "description": "must be an objectId and is required"},
+                "cinemaid": {"bsonType": "objectId", "description": "must be an objectId and is required"},
+                "datetime": {"bsonType": "date", "description": "must be a date and is required"},
+                "occupancy": {
+                    "bsonType": "object",
+                    "required": ["total", "reserved"],
+                    "properties": {
+                        "total": {"bsonType": "int", "description": "must be an integer and is required"},
+                        "reserved": {"bsonType": "int", "description": "must be an integer and is required"}
+                    }
+                }
+            }
+        }
+    }
+})
