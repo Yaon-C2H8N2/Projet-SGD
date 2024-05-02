@@ -1,0 +1,60 @@
+db.films.aggregate([
+    {
+        $lookup: {
+            from: "realisateurs",
+            localField: "director",
+            foreignField: "_id",
+            as: "director_details"
+        }
+    },
+    { $unwind: "$director_details" },
+    { $match: { "director_details.name": "Christopher Nolan" } }
+]);
+
+db.films.find({ "actors": "Leonardo DiCaprio" });
+
+db.films.aggregate([
+    {
+        $group: {
+            _id: "$director",
+            count: { $sum: 1 }
+        }
+    },
+    {
+        $lookup: {
+            from: "realisateurs",
+            localField: "_id",
+            foreignField: "_id",
+            as: "director_details"
+        }
+    },
+    { $unwind: "$director_details" },
+    { $project: { _id: 0, director_name: "$director_details.name", count: 1 } }
+]);
+
+
+db.films.aggregate([
+    {
+        $group: {
+            _id: "$director",
+            averageYear: { $avg: "$year" }
+        }
+    },
+    {
+        $lookup: {
+            from: "realisateurs",
+            localField: "_id",
+            foreignField: "_id",
+            as: "director_details"
+        }
+    },
+    { $unwind: "$director_details" },
+    { $project: { _id: 0, director_name: "$director_details.name", averageYear: 1 } }
+]);
+
+
+db.films.updateOne(
+    { "title": "Inception" },
+    { $addToSet: { "actors": "Ellen Page" } }
+);
+
