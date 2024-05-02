@@ -52,6 +52,24 @@ db.films.aggregate([
     { $project: { _id: 0, director_name: "$director_details.name", averageYear: 1 } }
 ]);
 
+db.films.updateOne(
+    { "title": "Inception" },
+    { $push: {
+        "reviews": {
+            $each: [
+                { "rating": 5, "comment": "Absolutely fantastic!" },
+                { "rating": 4, "comment": "Really good, but a bit confusing." },
+                { "rating": 5, "comment": "Masterpiece." },
+                { "rating": 4, "comment": "Great visuals, solid plot." },
+                { "rating": 5, "comment": "Nolan did it again!" },
+                { "rating": 3, "comment": "Good but not great." },
+                { "rating": 4, "comment": "Loved the complexity." },
+                { "rating": 5, "comment": "Perfect, as expected." },
+                { "rating": 4, "comment": "Engaging and thrilling." }
+            ]
+        }
+    }}
+);
 
 db.films.updateOne(
     { "title": "Inception" },
@@ -116,3 +134,7 @@ db.cinemas.aggregate([
     }},
     { $match: { numberOfFilms: { $gt: 1 } } }
 ]);
+
+
+
+
