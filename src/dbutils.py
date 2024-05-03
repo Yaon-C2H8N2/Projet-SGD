@@ -1,5 +1,6 @@
 from pymongo import MongoClient
 
+# Paramètres de connexion à la base de données
 username = 'root'
 password = 'root'
 auth_source = 'admin'

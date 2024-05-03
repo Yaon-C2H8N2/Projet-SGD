@@ -4,10 +4,12 @@ connection = Connection()
 db = connection.db
 
 def calculate_average_ratings():
+    # On déplie les reviews de tous les films pour pouvoir les agréger
     pipeline = [
         {"$unwind": "$reviews"},
         {"$group": {
             "_id": "$_id",
+            # On calcule la moyenne des notes des reviews lors du regroupement
             "average_rating": {"$avg": "$reviews.rating"}
         }}
     ]
